@@ -30,7 +30,7 @@ func Test_palindromeReverse(t *testing.T) {
 	}
 }
 
-func Test_palindromeReverseEach(t *testing.T) {
+func Test_palindromeFromEnd(t *testing.T) {
 	type args struct {
 		str string
 	}
@@ -51,8 +51,8 @@ func Test_palindromeReverseEach(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := palindromeReverseEach(tt.args.str); got != tt.want {
-				t.Errorf("palindromeReverseEach() = %v, want %v", got, tt.want)
+			if got := palindromeFromEnd(tt.args.str); got != tt.want {
+				t.Errorf("palindromeFromEnd() = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -116,9 +116,9 @@ func BenchmarkPalindromeReverse_Banana(b *testing.B) {
 		palindromeReverse("banana")
 	}
 }
-func BenchmarkPalindromeReverseEach_Banana(b *testing.B) {
+func BenchmarkPalindromeFromEnd_Banana(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		palindromeReverseEach("banana")
+		palindromeFromEnd("banana")
 	}
 }
 
@@ -132,9 +132,9 @@ func BenchmarkPalindromeReverse_civic(b *testing.B) {
 		palindromeReverse("civic")
 	}
 }
-func BenchmarkPalindromeReverseEach_civic(b *testing.B) {
+func BenchmarkPalindromeFromEnd_civic(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		palindromeReverseEach("civic")
+		palindromeFromEnd("civic")
 	}
 }
 
@@ -148,9 +148,9 @@ func BenchmarkPalindromeReverse_rodador(b *testing.B) {
 		palindromeReverse("rodador")
 	}
 }
-func BenchmarkPalindromeReverseEach_rodador(b *testing.B) {
+func BenchmarkPalindromeFromEnd_rodador(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		palindromeReverseEach("rodador")
+		palindromeFromEnd("rodador")
 	}
 }
 func BenchmarkPalindromeFromMiddle_nomelgibsonisacasinosbiglemon(b *testing.B) {
@@ -163,11 +163,12 @@ func BenchmarkPalindromeReverse_nomelgibsonisacasinosbiglemon(b *testing.B) {
 		palindromeReverse("nomelgibsonisacasinosbiglemon")
 	}
 }
-func BenchmarkPalindromeReverseEach_nomelgibsonisacasinosbiglemon(b *testing.B) {
+func BenchmarkPalindromeFromEnd_nomelgibsonisacasinosbiglemon(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		palindromeReverseEach("nomelgibsonisacasinosbiglemon")
+		palindromeFromEnd("nomelgibsonisacasinosbiglemon")
 	}
 }
+
 func BenchmarkPalindromeFromMiddle_longstring(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		palindromeFromMiddle("sdjfasdkflajkdslf;jaks;dlfjka;lsdjkf;lasjkdfl;ajksdlfjkalsdjkflajsdfnajsdfhquweurqjepfojiaopdsfjiaosdhufpiasdufiansdfuahsdfpuqpweufipadsnfasdhfuiaoshdufoaudfhauodfhuasdfnaiushdfuiaphfuipadnfaisudhfpadsufiahudfiauhdfiahsdfuiasuhdfpiadufnaiduhfiaduhfiahudfpiaudnciahdifphuadpfauhdpfauhpdfiaupfahusdfiphaupdifhuaipsdhufpaiudsfpihaupqiwehu9qwe8f9qwe8f9q8we9fhsdifhaidufiauhdfiahusdifuahidfuiasdufiaudfoiofduaifudsaiufdihaufidsuhaifdhuaifudiahfidshf9ew8q9f8ewq9f8ewq9uhewiqpuahipfsduiapfuhdspiauhfidpuahpifdsuhafpuaifdphuafpdhuafpdauhpfidhaicnduaipfduhaifhudaifhudianfudaipfdhusaiufdshaifdhuaifduhaifusdapfhdusiafndapiufhpaiufdhsuianfdsauhfdouahfduaofudhsoaiufhdsafnsdapifuewpqupfdshaufdsnaifudsaipfuhdsoaijfsdpoaijofpejqruewuqhfdsjanfdsjalfkjdslakjfldskja;lfdkjsal;fkjdsl;akjfld;skaj;flsdkjalfkdsafjds")
@@ -178,8 +179,8 @@ func BenchmarkPalindromeReverse_longstring(b *testing.B) {
 		palindromeReverse("sdjfasdkflajkdslf;jaks;dlfjka;lsdjkf;lasjkdfl;ajksdlfjkalsdjkflajsdfnajsdfhquweurqjepfojiaopdsfjiaosdhufpiasdufiansdfuahsdfpuqpweufipadsnfasdhfuiaoshdufoaudfhauodfhuasdfnaiushdfuiaphfuipadnfaisudhfpadsufiahudfiauhdfiahsdfuiasuhdfpiadufnaiduhfiaduhfiahudfpiaudnciahdifphuadpfauhdpfauhpdfiaupfahusdfiphaupdifhuaipsdhufpaiudsfpihaupqiwehu9qwe8f9qwe8f9q8we9fhsdifhaidufiauhdfiahusdifuahidfuiasdufiaudfoiofduaifudsaiufdihaufidsuhaifdhuaifudiahfidshf9ew8q9f8ewq9f8ewq9uhewiqpuahipfsduiapfuhdspiauhfidpuahpifdsuhafpuaifdphuafpdhuafpdauhpfidhaicnduaipfduhaifhudaifhudianfudaipfdhusaiufdshaifdhuaifduhaifusdapfhdusiafndapiufhpaiufdhsuianfdsauhfdouahfduaofudhsoaiufhdsafnsdapifuewpqupfdshaufdsnaifudsaipfuhdsoaijfsdpoaijofpejqruewuqhfdsjanfdsjalfkjdslakjfldskja;lfdkjsal;fkjdsl;akjfld;skaj;flsdkjalfkdsafjds")
 	}
 }
-func BenchmarkPalindromeReverseEach_longstring(b *testing.B) {
+func BenchmarkPalindromeFromEnd_longstring(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		palindromeReverseEach("sdjfasdkflajkdslf;jaks;dlfjka;lsdjkf;lasjkdfl;ajksdlfjkalsdjkflajsdfnajsdfhquweurqjepfojiaopdsfjiaosdhufpiasdufiansdfuahsdfpuqpweufipadsnfasdhfuiaoshdufoaudfhauodfhuasdfnaiushdfuiaphfuipadnfaisudhfpadsufiahudfiauhdfiahsdfuiasuhdfpiadufnaiduhfiaduhfiahudfpiaudnciahdifphuadpfauhdpfauhpdfiaupfahusdfiphaupdifhuaipsdhufpaiudsfpihaupqiwehu9qwe8f9qwe8f9q8we9fhsdifhaidufiauhdfiahusdifuahidfuiasdufiaudfoiofduaifudsaiufdihaufidsuhaifdhuaifudiahfidshf9ew8q9f8ewq9f8ewq9uhewiqpuahipfsduiapfuhdspiauhfidpuahpifdsuhafpuaifdphuafpdhuafpdauhpfidhaicnduaipfduhaifhudaifhudianfudaipfdhusaiufdshaifdhuaifduhaifusdapfhdusiafndapiufhpaiufdhsuianfdsauhfdouahfduaofudhsoaiufhdsafnsdapifuewpqupfdshaufdsnaifudsaipfuhdsoaijfsdpoaijofpejqruewuqhfdsjanfdsjalfkjdslakjfldskja;lfdkjsal;fkjdsl;akjfld;skaj;flsdkjalfkdsafjds")
+		palindromeFromEnd("sdjfasdkflajkdslf;jaks;dlfjka;lsdjkf;lasjkdfl;ajksdlfjkalsdjkflajsdfnajsdfhquweurqjepfojiaopdsfjiaosdhufpiasdufiansdfuahsdfpuqpweufipadsnfasdhfuiaoshdufoaudfhauodfhuasdfnaiushdfuiaphfuipadnfaisudhfpadsufiahudfiauhdfiahsdfuiasuhdfpiadufnaiduhfiaduhfiahudfpiaudnciahdifphuadpfauhdpfauhpdfiaupfahusdfiphaupdifhuaipsdhufpaiudsfpihaupqiwehu9qwe8f9qwe8f9q8we9fhsdifhaidufiauhdfiahusdifuahidfuiasdufiaudfoiofduaifudsaiufdihaufidsuhaifdhuaifudiahfidshf9ew8q9f8ewq9f8ewq9uhewiqpuahipfsduiapfuhdspiauhfidpuahpifdsuhafpuaifdphuafpdhuafpdauhpfidhaicnduaipfduhaifhudaifhudianfudaipfdhusaiufdshaifdhuaifduhaifusdapfhdusiafndapiufhpaiufdhsuianfdsauhfdouahfduaofudhsoaiufhdsafnsdapifuewpqupfdshaufdsnaifudsaipfuhdsoaijfsdpoaijofpejqruewuqhfdsjanfdsjalfkjdslakjfldskja;lfdkjsal;fkjdsl;akjfld;skaj;flsdkjalfkdsafjds")
 	}
 }

@@ -1,10 +1,5 @@
 package main
 
-func palindromeReverse(str string) bool {
-	strReverse := reverse(str)
-	return strReverse == str
-}
-
 func reverse(s string) string {
 	runes := []rune(s)
 	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
@@ -13,7 +8,12 @@ func reverse(s string) string {
 	return string(runes)
 }
 
-func palindromeReverseEach(str string) bool {
+func palindromeReverse(str string) bool {
+	strReversed := reverse(str)
+	return strReversed == str
+}
+
+func palindromeFromEnd(str string) bool {
 	runes := []rune(str)
 	length := len(runes)
 	for i := 0; i < length; i++ {
